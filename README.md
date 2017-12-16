@@ -5,6 +5,8 @@ payload, then ships them off to the server, one every two seconds.
 
 ## Usage
 
+First and most importantly, <a href="https://golang.org/doc/install">install Go for your platform</a>. This project was built on v1.8.3.
+
 The server expects a single command line argument: its port number. It should be invoked as follows:
 
 ```sh
