@@ -65,7 +65,7 @@ func main() {
     // Get the client port passed as the second argument, then concatenate it
     // to the loopback address
     clientPort := os.Args[1]
-    clientIP := "127.0.0.1:0" + clientPort
+    clientIP := myIP.String() + ":" + clientPort
 
     ServerAddr, err := net.ResolveUDPAddr("udp", serverIP)
     ParseErrorResponse(err)
