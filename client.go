@@ -51,15 +51,6 @@ func GetIPBigEndianBytes(ipAddr net.IP) (buf []byte) {
     return
 }
 
-func GetOutboundIPAddress() (net.IP) {
-    conn, err := net.Dial("udp", "8.8.8.8:80")
-    ParseErrorResponse(err)
-    defer conn.Close()
-    localAddr := conn.LocalAddr().(*net.UDPAddr)
-    return localAddr.IP
-}
-
-
 func main() {
     // First, let's gather our own local IP Address. The address returned by InterfaceAddrs
     // at index 0 will always be the loopback device. We're looking for the IP on the LAN,
