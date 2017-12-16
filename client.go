@@ -6,6 +6,7 @@ import (
     "net"
     "time"
     "encoding/binary"
+    "strconv"
     "hash/adler32"
     "bytes"
 )
@@ -63,7 +64,7 @@ func main() {
     // Get the server IP address passed as the first argument to the program
     serverIP := os.Args[2]
     // Get the client port passed as the second argument, then concatenate it
-    // to the loopback address
+    // to the the client's LAN address
     clientPort := os.Args[1]
     clientIP := myIP.String() + ":" + clientPort
 
@@ -83,7 +84,8 @@ func main() {
         msgBuf := GetStrBigEndianBytes(msg)
 
         // Handle pushing our port
-        portBuf := GetIntBigEndianBytes(2, 21983)
+        portInt, _ := strconv.Atoi(clientPort)
+        portBuf := GetIntBigEndianBytes(2, uint64(portInt))
         concat1 := append(portBuf[:], msgBuf[:]...)
 
         // Handle pushing our IP Address. Feed it a String copy of the IP address we

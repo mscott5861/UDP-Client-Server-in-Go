@@ -6,6 +6,7 @@ import (
     "os"
     "encoding/binary"
     "time"
+    "strconv"
 )
 
 func ParseErrorResponse(err error) {
@@ -47,9 +48,11 @@ func main() {
 
         // Get the IP address stored at bytes 12-16
         ip := binary.BigEndian.Uint32(buf[12:16])
+        port := binary.BigEndian.Uint16(buf[16:18])
+        portStr := strconv.Itoa(int(port))
         ipB := make(net.IP, 4)
         binary.BigEndian.PutUint32(ipB, ip)
-        fmt.Println("IP: ", ipB)
+        fmt.Println("IPv4 of sender: ", net.IP.String(ipB) + ":" + portStr)
         fmt.Println("Times message received: ", timesMsgReceived)
         fmt.Println("\n")
 
