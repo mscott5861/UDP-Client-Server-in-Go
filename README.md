@@ -1,7 +1,7 @@
 # Go Client/Server
 
 A client/server implementation in which the client assembles raw UDP datagrams with a specified
-payload, then ships them off to the server, one every two seconds.
+payload, then ships them off to the server, once every two seconds.
 
 ## Usage
 
