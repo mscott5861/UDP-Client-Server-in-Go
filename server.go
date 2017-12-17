@@ -26,7 +26,7 @@ func main() {
         os.Exit(1)
     }
 
-    // Gather the port we'll be listen on, check that it's in good shape, and start eavesdropping.
+    // Gather the port we'll be listening on, get an address object, and start eavesdropping.
     ServerPort := ":" + os.Args[1]
     ServerAddr, err := net.ResolveUDPAddr("udp", ServerPort)
     ParseErrorResponse(err)
@@ -37,8 +37,8 @@ func main() {
     fmt.Println("\n\nListening on port " + os.Args[1] + " (\"Ctrl+C\" to quit)\n\n")
     defer ServerConn.Close()
 
-    // Allocate enough for the default UDP MTU limit, though we won't anything close to it.
-    // TCPDump pegs these payload for these datagrams at 109 bytes in length.
+    // Allocate enough for the default UDP MTU limit, though we won't need anything 
+    // close to it. TCPDump pegs the payload for these datagrams at 109 bytes in length.
     buf := make([]byte, 65535)
     timesMsgReceived := 0
 
