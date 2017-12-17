@@ -61,12 +61,21 @@ func main() {
     myIP,_,err := net.ParseCIDR(myIPCIDR[1].String())
     ParseErrorResponse(err)
 
-    // Get the server IP address passed as the first argument to the program
-    serverIP := os.Args[2]
-    // Get the client port passed as the second argument, then concatenate it
+    argCount := len(os.Args[1:])
+    if (argCount != 2) {
+        fmt.Print("\nThe client expects exactly two command line parameters:\n\n\t")
+        fmt.Print("1. The port for the client to listen on\n\t2. The sever's IP:Port.")
+        fmt.Println("\n\nExample invocation:\n\n\tgo run client.go 9999 192.168.1.10:9887\n")
+        os.Exit(1)
+    }
+
+    // Get the client port passed as the first argument, then concatenate it
     // to the the client's LAN address
     clientPort := os.Args[1]
     clientIP := myIP.String() + ":" + clientPort
+    // Get the server IP address passed as the second argument to the program
+    serverIP := os.Args[2]
+
 
     ServerAddr, err := net.ResolveUDPAddr("udp", serverIP)
     ParseErrorResponse(err)

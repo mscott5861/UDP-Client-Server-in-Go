@@ -19,4 +19,4 @@ The client expects two command line arguments: a port number to listen on, and a
 $ go run client.go #client-listenting-port-num# #server-ip:server-port#
 ```
 
-Make sure to avoid well-known ports.
+Make sure to avoid well-known ports. Then sit back and get ready to pick your jaw up off the floor.
